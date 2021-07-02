@@ -1,20 +1,21 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const Main = () => {
+const Main = ({ children }) => {
   return (
     <View style={styles.main}>
-      <Text>
-        This is Calculator
-      </Text>
+      {children}
     </View>
   )
+}
+
+Main.defaultProps = {
+  children: <Text>Main</Text>
 }
 
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    padding: 15,
     backgroundColor: '#fff'
   },
   text: {

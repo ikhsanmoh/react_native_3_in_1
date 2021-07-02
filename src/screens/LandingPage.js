@@ -3,12 +3,15 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import Header from '../components/base/Header'
 import Main from '../components/base/Main'
+import CalculatorScreen from './calculator/CalculatorScreen'
 
 const LandingPage = () => {
   return (
     <View style={myStyles.landingPage}>
       <Header title="Calculator" />
-      <Main />
+      <Main>
+        <CalculatorScreen />
+      </Main>
     </View>
   )
 }
