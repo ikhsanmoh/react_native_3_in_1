@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import NumberBtn from '../../components/calculator/NumberBtn'
+import MyButton from '../../components/calculator/MyButton'
 
 const Calculator = () => {
   const [output, setOutput] = useState('')
@@ -12,17 +12,47 @@ const Calculator = () => {
     setOutput(output.concat(strDigit))
   }
 
+  const pressOperator = (operand) => { }
+
   const pressAllClear = () => {
     setOutput('')
   }
 
+  const pressDelete = () => { }
+
+  const getResult = () => { }
+
   return (
     <View style={myStyles.container}>
-      <TextInput style={myStyles.output} value={output} placeholder='This is the output' />
+      <TextInput style={myStyles.output} value={output} />
       <View style={myStyles.keypad}>
-        <NumberBtn onPress={pressNumber} number={1} />
-        <NumberBtn onPress={pressNumber} number={2} />
-        <NumberBtn onPress={pressNumber} number={3} />
+        <View style={myStyles.row}>
+          <MyButton onPress={pressAllClear} value='AC' stretch={true} color='red' />
+          <MyButton onPress={pressDelete} value='Del' color='red' />
+          <MyButton onPress={pressOperator} value='/' color='blue' />
+        </View>
+        <View style={myStyles.row}>
+          <MyButton onPress={pressNumber} value={7} />
+          <MyButton onPress={pressNumber} value={8} />
+          <MyButton onPress={pressNumber} value={9} />
+          <MyButton onPress={pressOperator} value='x' color='blue' />
+        </View>
+        <View style={myStyles.row}>
+          <MyButton onPress={pressNumber} value={4} />
+          <MyButton onPress={pressNumber} value={5} />
+          <MyButton onPress={pressNumber} value={6} />
+          <MyButton onPress={pressOperator} value='+' color='blue' />
+        </View>
+        <View style={myStyles.row}>
+          <MyButton onPress={pressNumber} value={1} />
+          <MyButton onPress={pressNumber} value={2} />
+          <MyButton onPress={pressNumber} value={3} />
+          <MyButton onPress={pressOperator} value='-' color='blue' />
+        </View>
+        <View style={myStyles.row}>
+          <MyButton onPress={pressNumber} value={0} />
+          <MyButton onPress={getResult} value='=' stretch={true} color='blue' />
+        </View>
       </View>
     </View>
   )
@@ -31,20 +61,31 @@ const Calculator = () => {
 const myStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'gray',
+    // backgroundColor: 'gray',
+    backgroundColor: '#525252',
   },
   output: {
     fontSize: 24,
     textAlign: 'right',
     padding: 15,
-    borderWidth: 1,
-    borderColor: 'white',
+    borderWidth: 0,
+    color: 'white',
     height: 100,
   },
   keypad: {
     flex: 1,
+    paddingTop: 5,
+    paddingBottom: 5,
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    // backgroundColor: '#616161'
+  },
+  row: {
     flexDirection: 'row',
-    backgroundColor: '#616161'
+    justifyContent: 'flex-end',
+  },
+  stretch: {
+    flex: 1
   }
 })
 
