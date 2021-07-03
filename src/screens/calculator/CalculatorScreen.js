@@ -12,15 +12,33 @@ const Calculator = () => {
     setOutput(output.concat(strDigit))
   }
 
-  const pressOperator = (operand) => { }
+  const pressOperator = (operand) => {
+    switch (operand) {
+      case '+':
+      case '-':
+      case 'x':
+      case '/':
+        setOutput(output.concat(operand))
+      default:
+        return
+    }
+  }
 
   const pressAllClear = () => {
     setOutput('')
   }
 
-  const pressDelete = () => { }
+  const pressDelete = () => {
+    setOutput(output.toString().slice(0, -1))
+  }
 
-  const getResult = () => { }
+  const getResult = () => {
+    try {
+      setOutput(eval(output.replace('x', '*')).toString());
+    } catch (err) {
+      setOutput("Error Input")
+    }
+  }
 
   return (
     <View style={myStyles.container}>
@@ -28,7 +46,7 @@ const Calculator = () => {
       <View style={myStyles.keypad}>
         <View style={myStyles.row}>
           <MyButton onPress={pressAllClear} value='AC' stretch={true} color='red' />
-          <MyButton onPress={pressDelete} value='Del' color='red' />
+          <MyButton onPress={pressDelete} value='DEL' color='red' />
           <MyButton onPress={pressOperator} value='/' color='blue' />
         </View>
         <View style={myStyles.row}>
@@ -61,16 +79,15 @@ const Calculator = () => {
 const myStyles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'gray',
     backgroundColor: '#525252',
   },
   output: {
-    fontSize: 24,
+    fontSize: 36,
     textAlign: 'right',
     padding: 15,
     borderWidth: 0,
     color: 'white',
-    height: 100,
+    height: 120,
   },
   keypad: {
     flex: 1,
@@ -78,7 +95,6 @@ const myStyles = StyleSheet.create({
     paddingBottom: 5,
     justifyContent: 'space-between',
     flexDirection: 'column',
-    // backgroundColor: '#616161'
   },
   row: {
     flexDirection: 'row',
