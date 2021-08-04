@@ -11,7 +11,7 @@ const myStyles = StyleSheet.create({
   }
 })
 
-const Tasks = ({ tasks }) => {
+const Tasks = ({ tasks, onDelete, onToggle }) => {
   return tasks.length > 0 ? (
     <FlatList
       data={tasks}
@@ -20,6 +20,8 @@ const Tasks = ({ tasks }) => {
         return (
           <Task
             task={item}
+            onDelete={onDelete}
+            onToggle={onToggle}
           />
         )
       }}

@@ -12,28 +12,33 @@ const myStyles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  text: {
-    fontSize: 16,
-    color: '#333'
   }
 })
 
-const Task = ({ task }) => {
+const Task = ({ task, onDelete, onToggle }) => {
+
+  const taskTextStyle = StyleSheet.create({
+    text: {
+      fontSize: 16,
+      color: '#333',
+      textDecorationLine: task.isDone ? 'line-through' : 'none'
+    }
+  })
+
   return (
     <TouchableOpacity
       style={myStyles.container}
-      onLongPress={() => alert('Task Done')}
+      onLongPress={() => onToggle(task.id)}
     >
       <View style={myStyles.listItem}>
-        <Text style={myStyles.text}>
+        <Text style={taskTextStyle.text}>
           {task.text}
         </Text>
         <Entypo
           name="circle-with-cross"
           size={20}
           color="red"
-          onPress={() => alert('Task Deleted')}
+          onPress={() => onDelete(task.id)}
         />
       </View>
     </TouchableOpacity >
