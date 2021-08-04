@@ -12,6 +12,9 @@ const myStyles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  task: {
+    maxWidth: '90%'
   }
 })
 
@@ -19,9 +22,13 @@ const Task = ({ task, onDelete, onToggle }) => {
 
   const taskTextStyle = StyleSheet.create({
     text: {
-      fontSize: 16,
+      fontSize: 18,
       color: '#333',
       textDecorationLine: task.isDone ? 'line-through' : 'none'
+    },
+    smallText: {
+      fontSize: 14,
+      color: '#666'
     }
   })
 
@@ -31,9 +38,15 @@ const Task = ({ task, onDelete, onToggle }) => {
       onLongPress={() => onToggle(task.id)}
     >
       <View style={myStyles.listItem}>
-        <Text style={taskTextStyle.text}>
-          {task.text}
-        </Text>
+        <View style={myStyles.task}>
+          <Text style={taskTextStyle.text}>
+            {task.text}
+          </Text>
+          {task.day !== '' ?
+            <Text style={taskTextStyle.smallText}>
+              {task.day}
+            </Text> : null}
+        </View>
         <Entypo
           name="circle-with-cross"
           size={20}
