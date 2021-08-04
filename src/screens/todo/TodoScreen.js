@@ -1,5 +1,6 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet } from 'react-native'
+import Tasks from '../../components/Tasks'
 
 /**
  * TODO 1: Init neccessary components.
@@ -10,10 +11,28 @@ import { View, Text } from 'react-native'
  * ! Est: 2-3 h.
  */
 
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    padding: 15,
+    backgroundColor: '#fff'
+  },
+  text: {
+    fontSize: 18,
+    textAlign: 'center'
+  }
+})
+
 const TodoScreen = () => {
+  const [tasks, setTasks] = useState([
+    { id: 1, text: 'Task 1', day: 'Mon, 09:00 - 12:00', isDone: false },
+    { id: 2, text: 'Task 2', day: 'Wed, 08:00 - 11:00', isDone: false },
+    { id: 3, text: 'Task 3', day: 'Fri, 07:00 - 10:00', isDone: false },
+  ])
+
   return (
-    <View>
-      <Text>This is Todo Screen</Text>
+    <View style={styles.main}>
+      <Tasks tasks={tasks} />
     </View>
   )
 }
